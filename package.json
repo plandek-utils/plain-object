@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@eturino/key-set": "^5.6.3",
+    "@plandek-utils/ts-parse-dayjs": "^5.1.0",
+    "lodash-es": "^4.17.21"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "deno.enable": true,
+  "editor.tabSize": 2,
+  "cSpell.words": [
+    "datasources",
+    "eturino",
+    "pino",
+    "plandek"
+  ]
+}
