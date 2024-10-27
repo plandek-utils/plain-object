@@ -39,15 +39,14 @@ export type PlainObjectValue =
  * No other types are allowed, including functions.
  */
 export function isPlainObjectValue(x: unknown): x is PlainObjectValue {
-  if (isNil(x)) return true;
+  if (isNil(x) || typeof x === "boolean" || typeof x === "string" || isDayjs(x)) return true;
   if (isFunction(x)) return false;
-  if (typeof x === "boolean") return true;
-  if (typeof x === "number" && isFinite(x)) return true;
-  if (typeof x === "string") return true;
-  if (isDayjs(x)) return true;
-  if (isArray(x)) return x.every(isPlainObjectValue);
-  if (isObject(x)) return Object.values(x).every(isPlainObjectValue);
-  return false;
+
+  return (
+    (typeof x === "number" && isFinite(x)) ||
+    (isArray(x) && x.every(isPlainObjectValue)) ||
+    (isObject(x) && Object.values(x).every(isPlainObjectValue))
+  );
 }
 
 /**
