@@ -1,4 +1,4 @@
-# @plandek/plain-object
+# @plandek-utils/plain-object
 
 TypeScript types and predicate utils `isPlainObject` and `isPlainObjectValue`.
 
