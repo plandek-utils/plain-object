@@ -25,7 +25,7 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: fcdd1888451bc144a068ba562422291e57291377485383ffbe61b9828aed0b7d
         with:
-          coverageCommand: deno run test && deno run lcov
+          coverageCommand: deno run ci
           coverageLocations: "cov.lcov"
 
   publish:

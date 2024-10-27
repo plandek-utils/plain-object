@@ -4,6 +4,7 @@
   "exports": "./src/mod.ts",
   "tasks": {
     "dev": "deno test --watch src/mod.ts",
+    "ci": "deno test --coverage && deno coverage --lcov --output=cov.lcov",
     "test": "deno test --coverage",
     "lcov": "deno coverage --lcov --output=cov.lcov",
     "html": "genhtml -o html_cov cov.lcov"
