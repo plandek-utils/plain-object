@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "exports": "./src/mod.ts",
   "tasks": {
+    "outdated": "deno run -rA jsr:@check/deps",
     "dev": "deno test --watch src/mod.ts",
     "ci": "deno test --coverage && deno coverage --lcov --output=cov.lcov",
     "test": "deno test --coverage",
@@ -11,7 +12,6 @@
   },
   "license": "MIT",
   "imports": {
-    "@eturino/key-set": "npm:@eturino/key-set@^5.6.3",
     "@plandek-utils/ts-parse-dayjs": "npm:@plandek-utils/ts-parse-dayjs@^5.1.0",
     "@std/assert": "jsr:@std/assert@1",
     "@std/expect": "jsr:@std/expect@^1.0.6",

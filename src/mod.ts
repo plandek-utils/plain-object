@@ -1,5 +1,4 @@
-import type { ComposedKeySet, KeySet } from "@eturino/key-set";
-import type { Dayjs, DayjsInput } from "@plandek-utils/ts-parse-dayjs";
+import type { Dayjs } from "@plandek-utils/ts-parse-dayjs";
 import { isDayjs } from "@plandek-utils/ts-parse-dayjs";
 // @ts-types="@types/lodash-es"
 import { isArray, isFunction, isNil, isObject } from "lodash-es";
@@ -17,14 +16,25 @@ import { isArray, isFunction, isNil, isObject } from "lodash-es";
  * No other types are allowed, including functions.
  */
 export type PlainObjectValue =
+  | PlainObjectValuePrimitive
+  | PlainObjectValue[]
+  | { [prop: string]: PlainObjectValue };
+
+/**
+ * Union of all possible primitive values (non-array, non-nested-object) of a Plain Object field.
+ *
+ * That means:
+ * - It can be `undefined` or `null`.
+ * - It can be a boolean, number, or string.
+ * - It can be a Dayjs object.
+ */
+export type PlainObjectValuePrimitive =
   | undefined
   | null
   | boolean
   | number
   | string
-  | Dayjs
-  | PlainObjectValue[]
-  | { [prop: string]: PlainObjectValue };
+  | Dayjs;
 
 /**
  * Check if the given value is either a Plain Object or a valid value of a Plain Object field.
@@ -70,24 +80,27 @@ export function isPlainObject(
   return !isArray(o) && !isFunction(o) && isValidObject(o);
 }
 
+/**
+ * Extension of PlainObjectValue that allows for a generic type to be added as a valid value.
+ */
 export type PlainObjectValueExtended<T> =
-  | undefined
-  | null
-  | boolean
-  | number
-  | string
+  | PlainObjectValuePrimitive
   | T
   | Array<PlainObjectValueExtended<T>>
   | { [prop: string]: PlainObjectValueExtended<T> };
 
-export type PlainObjectExtended<
-  T = DayjsInput | ComposedKeySet<string> | KeySet<string>,
-> = {
+/**
+ * Extension of PlainObject that uses PlainObjectValueExtended to add extra possible values.
+ */
+export type PlainObjectExtended<T> = {
   [prop: string]: PlainObjectValueExtended<T>;
 };
 
-// internal helper functions
-function isValidPrimitive(x: unknown): x is null | undefined | boolean | string | Dayjs | number {
+/**
+ * Returns true if the given value is a valid primitive: null, undefined, boolean, string, Dayjs, or number.
+ * @internal
+ */
+function isValidPrimitive(x: unknown): x is PlainObjectValuePrimitive {
   return (
     isNil(x) ||
     typeof x === "boolean" ||
@@ -97,10 +110,18 @@ function isValidPrimitive(x: unknown): x is null | undefined | boolean | string 
   );
 }
 
+/**
+ * Returns true if the given value is a valid array: array where all elements are PlainObjectValues.
+ * @internal
+ */
 function isValidArray(x: unknown): x is PlainObjectValue[] {
   return isArray(x) && x.every(isPlainObjectValue);
 }
 
+/**
+ * Returns true if the given value is a valid object: POJO where all values are PlainObjectValues.
+ * @internal
+ */
 function isValidObject(x: unknown): x is { [prop: string]: PlainObjectValue } {
   return isObject(x) && Object.values(x).every(isPlainObjectValue);
 }
