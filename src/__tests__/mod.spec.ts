@@ -1,4 +1,3 @@
-// deno-lint-ignore-file no-explicit-any
 import { describe, it } from "@std/testing/bdd";
 import { expect } from "@std/expect";
 
