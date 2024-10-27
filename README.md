@@ -1,5 +1,11 @@
 # @plandek-utils/plain-object
 
+[![JSR Scope](https://jsr.io/badges/@plandek-utils)](https://jsr.io/@plandek-utils)
+[![JSR](https://jsr.io/badges/@plandek-utils/plain-object)](https://jsr.io/@plandek-utils/plain-object)
+[![JSR Score](https://jsr.io/badges/@plandek-utils/plain-object/score)](https://jsr.io/@plandek-utils/plain-object)
+[![Maintainability](https://api.codeclimate.com/v1/badges/8cbd695e92a5bd147519/maintainability)](https://codeclimate.com/github/plandek-utils/plain-object/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/8cbd695e92a5bd147519/test_coverage)](https://codeclimate.com/github/plandek-utils/plain-object/test_coverage)
+
 TypeScript types and predicate utils `isPlainObject` and `isPlainObjectValue`.
 
 A PlainObject is a POJO where all values are PlainObjectValue.
