@@ -16,10 +16,10 @@ jobs:
           deno-version: v2.x
 
       - name: Check format
-        run: deno fmt --check
+        run: deno fmt ./src --check
 
       - name: Check lint
-        run: deno lint
+        run: deno lint ./src
 
       - uses: paambaati/codeclimate-action@v9.0.0
         env:
