@@ -69,7 +69,9 @@ export type PlainObject = { [prop: string]: PlainObjectValue };
 export type PlainObjectOrArray = PlainObject | PlainObject[];
 
 /**
- * Checks if the given value is a PlainObject.
+ * Checks if the given PlainObjectValue is a PlainObject.
+ *
+ * Since the given value is a PlainObjectValue, we just need to discard the primitive values and arrays.
  *
  * @param o
  * @returns
@@ -77,7 +79,7 @@ export type PlainObjectOrArray = PlainObject | PlainObject[];
 export function isPlainObject(
   o: PlainObjectValue,
 ): o is Record<string, unknown> & PlainObject {
-  return !isArray(o) && !isFunction(o) && isValidObject(o);
+  return !isArray(o) && !isValidPrimitive(o) && isObject(o);
 }
 
 /**

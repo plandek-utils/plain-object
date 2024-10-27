@@ -70,11 +70,6 @@ describe("isPlainObject", () => {
     expect(isPlainObject(obj)).toBe(true);
   });
 
-  it("should return false for non plain objects (nested)", () => {
-    const obj = { a: 42, b: "hello", c: true, d: { d1: 131, d2: () => "oh no" } };
-    expect(isPlainObject(obj as any)).toBe(false);
-  });
-
   it("should return true for empty plain objects", () => {
     expect(isPlainObject({})).toBe(true);
   });
@@ -82,10 +77,6 @@ describe("isPlainObject", () => {
   it("should return false for arrays", () => {
     expect(isPlainObject([])).toBe(false);
     expect(isPlainObject([1, 2, 3])).toBe(false);
-  });
-
-  it("should return false for functions", () => {
-    expect(isPlainObject((() => {}) as any)).toBe(false);
   });
 
   it("should return false for null and undefined", () => {
