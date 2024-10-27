@@ -1,8 +1,9 @@
 {
   "name": "@plandek-utils/plain-object",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "exports": "./src/mod.ts",
   "tasks": {
+    "release": "npx light-release",
     "outdated": "deno run -rA jsr:@check/deps",
     "dev": "deno test --watch src/mod.ts",
     "ci": "deno test --coverage && deno coverage --lcov --output=cov.lcov",

@@ -6,3 +6,5 @@ COPY --from=deno /deno /usr/local/bin/deno
 RUN sed -i 's/Components: main/Components: main contrib non-free non-free-firmware/' /etc/apt/sources.list.d/debian.sources
 
 RUN apt-get -y update && apt-get -y --no-install-recommends install lcov && apt-get clean
+
+RUN npm install --global "eturino/light-release#feature/non-package-json-support"
