@@ -39,19 +39,13 @@ export type PlainObjectValue =
  * No other types are allowed, including functions.
  */
 export function isPlainObjectValue(x: unknown): x is PlainObjectValue {
-  if (isValidPrimitive(x)) return true;
   if (isFunction(x)) return false;
 
   return (
-    (typeof x === "number" && isFinite(x)) ||
-    (isArray(x) && x.every(isPlainObjectValue)) ||
-    (isObject(x) && Object.values(x).every(isPlainObjectValue))
+    isValidPrimitive(x) ||
+    isValidArray(x) ||
+    isValidObject(x)
   );
-}
-
-// internal helper function
-function isValidPrimitive(x: unknown): x is boolean | null | undefined | string | Dayjs {
-  return isNil(x) || typeof x === "boolean" || typeof x === "string" || isDayjs(x);
 }
 
 /**
@@ -73,7 +67,7 @@ export type PlainObjectOrArray = PlainObject | PlainObject[];
 export function isPlainObject(
   o: PlainObjectValue,
 ): o is Record<string, unknown> & PlainObject {
-  return !!o && !isArray(o) && isObject(o) && !isFunction(o) && Object.values(o).every(isPlainObjectValue);
+  return !isArray(o) && !isFunction(o) && isValidObject(o);
 }
 
 export type PlainObjectValueExtended<T> =
@@ -91,3 +85,22 @@ export type PlainObjectExtended<
 > = {
   [prop: string]: PlainObjectValueExtended<T>;
 };
+
+// internal helper functions
+function isValidPrimitive(x: unknown): x is null | undefined | boolean | string | Dayjs | number {
+  return (
+    isNil(x) ||
+    typeof x === "boolean" ||
+    typeof x === "string" ||
+    isDayjs(x) ||
+    (typeof x === "number" && isFinite(x))
+  );
+}
+
+function isValidArray(x: unknown): x is PlainObjectValue[] {
+  return isArray(x) && x.every(isPlainObjectValue);
+}
+
+function isValidObject(x: unknown): x is { [prop: string]: PlainObjectValue } {
+  return isObject(x) && Object.values(x).every(isPlainObjectValue);
+}
