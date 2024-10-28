@@ -1,6 +1,6 @@
 {
   "generateMarkdown": true,
-  "generateHTML": true,
+  "generateHTML": false,
   "releaseNotesDir": ".release-notes",
   "badgeStyle": "flat-square",
   "dateFormat": "YYYY-MM-DD",
