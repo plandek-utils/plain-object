@@ -1,9 +1,8 @@
 import { describe, it } from "@std/testing/bdd";
 import { expect } from "@std/expect";
+import { parseDayjsOrError } from "@plandek-utils/ts-parse-dayjs";
 
 import { isPlainObject, isPlainObjectValue } from "../mod.ts";
-
-import { parseDayjsOrError } from "@plandek-utils/ts-parse-dayjs";
 
 describe("isPlainObjectValue", () => {
   it("should return true for nil values", () => {

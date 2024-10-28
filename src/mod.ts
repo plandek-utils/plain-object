@@ -1,7 +1,5 @@
 import type { Dayjs } from "@plandek-utils/ts-parse-dayjs";
 import { isDayjs } from "@plandek-utils/ts-parse-dayjs";
-// @ts-types="@types/lodash-es"
-import { isArray, isFunction, isNil, isObject } from "lodash-es";
 
 /**
  * Union of all possible values of a Plain Object field.
@@ -49,7 +47,7 @@ export type PlainObjectValuePrimitive =
  * No other types are allowed, including functions.
  */
 export function isPlainObjectValue(x: unknown): x is PlainObjectValue {
-  if (isFunction(x)) return false;
+  if (typeof x === "function") return false;
 
   return (
     isValidPrimitive(x) ||
@@ -79,7 +77,7 @@ export type PlainObjectOrArray = PlainObject | PlainObject[];
 export function isPlainObject(
   o: PlainObjectValue,
 ): o is Record<string, unknown> & PlainObject {
-  return !isArray(o) && !isValidPrimitive(o) && isObject(o);
+  return !Array.isArray(o) && !isValidPrimitive(o) && isObject(o);
 }
 
 /**
@@ -104,7 +102,7 @@ export type PlainObjectExtended<T> = {
  */
 function isValidPrimitive(x: unknown): x is PlainObjectValuePrimitive {
   return (
-    isNil(x) ||
+    isNullOrUndefined(x) ||
     typeof x === "boolean" ||
     typeof x === "string" ||
     isDayjs(x) ||
@@ -117,7 +115,7 @@ function isValidPrimitive(x: unknown): x is PlainObjectValuePrimitive {
  * @internal
  */
 function isValidArray(x: unknown): x is PlainObjectValue[] {
-  return isArray(x) && x.every(isPlainObjectValue);
+  return Array.isArray(x) && x.every(isPlainObjectValue);
 }
 
 /**
@@ -126,4 +124,23 @@ function isValidArray(x: unknown): x is PlainObjectValue[] {
  */
 function isValidObject(x: unknown): x is { [prop: string]: PlainObjectValue } {
   return isObject(x) && Object.values(x).every(isPlainObjectValue);
+}
+
+/**
+ * see https://docs.deno.com/api/node/util/~/isNullOrUndefined
+ *
+ * @param value
+ * @returns
+ */
+function isNullOrUndefined(value: unknown): value is null | undefined {
+  return value === undefined || value === null;
+}
+
+/**
+ * see https://docs.deno.com/api/node/util/~/isObject
+ * @param value
+ * @returns
+ */
+function isObject(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === "object";
 }
