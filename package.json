@@ -1,7 +1,5 @@
 {
   "dependencies": {
-    "@plandek-utils/ts-parse-dayjs": "^5.1.0",
-    "lodash-es": "^4.17.21",
-    "@types/lodash-es": "^4.17.12"
+    "@plandek-utils/ts-parse-dayjs": "^5.1.0"
   }
 }

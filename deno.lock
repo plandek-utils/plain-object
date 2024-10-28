@@ -11,9 +11,7 @@
     "jsr:@std/path@^1.0.6": "1.0.7",
     "jsr:@std/path@^1.0.7": "1.0.7",
     "jsr:@std/testing@^1.0.3": "1.0.3",
-    "npm:@plandek-utils/ts-parse-dayjs@^5.1.0": "5.1.0",
-    "npm:@types/lodash-es@^4.17.12": "4.17.12",
-    "npm:lodash-es@^4.17.21": "4.17.21"
+    "npm:@plandek-utils/ts-parse-dayjs@^5.1.0": "5.1.0"
   },
   "jsr": {
     "@std/assert@1.0.6": {
@@ -67,20 +65,8 @@
         "lodash"
       ]
     },
-    "@types/lodash-es@4.17.12": {
-      "integrity": "sha512-0NgftHUcV4v34VhXm8QBSftKVXtbkBG3ViCjs6+eJ5a6y6Mi/jiFGPc1sC7QK+9BFhWrURE3EOggmWaSxL9OzQ==",
-      "dependencies": [
-        "@types/lodash"
-      ]
-    },
-    "@types/lodash@4.17.12": {
-      "integrity": "sha512-sviUmCE8AYdaF/KIHLDJBQgeYzPBI0vf/17NaYehBJfYD1j6/L95Slh07NlyK2iNyBNaEkb3En2jRt+a8y3xZQ=="
-    },
     "dayjs@1.11.13": {
       "integrity": "sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg=="
-    },
-    "lodash-es@4.17.21": {
-      "integrity": "sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw=="
     },
     "lodash@4.17.21": {
       "integrity": "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg=="
@@ -91,15 +77,11 @@
       "jsr:@std/assert@1",
       "jsr:@std/expect@^1.0.6",
       "jsr:@std/testing@^1.0.3",
-      "npm:@plandek-utils/ts-parse-dayjs@^5.1.0",
-      "npm:@types/lodash-es@^4.17.12",
-      "npm:lodash-es@^4.17.21"
+      "npm:@plandek-utils/ts-parse-dayjs@^5.1.0"
     ],
     "packageJson": {
       "dependencies": [
-        "npm:@plandek-utils/ts-parse-dayjs@^5.1.0",
-        "npm:@types/lodash-es@^4.17.12",
-        "npm:lodash-es@^4.17.21"
+        "npm:@plandek-utils/ts-parse-dayjs@^5.1.0"
       ]
     }
   }
