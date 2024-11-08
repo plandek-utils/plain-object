@@ -1,5 +1,5 @@
 {
   "dependencies": {
-    "@plandek-utils/ts-parse-dayjs": "^5.1.0"
+    "@plandek-utils/ts-parse-dayjs": "^5.2.1"
   }
 }

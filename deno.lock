@@ -11,7 +11,8 @@
     "jsr:@std/path@^1.0.6": "1.0.7",
     "jsr:@std/path@^1.0.7": "1.0.7",
     "jsr:@std/testing@^1.0.3": "1.0.3",
-    "npm:@plandek-utils/ts-parse-dayjs@^5.1.0": "5.1.0"
+    "npm:@plandek-utils/ts-parse-dayjs@^5.1.0": "5.1.0",
+    "npm:@plandek-utils/ts-parse-dayjs@^5.2.1": "5.2.1"
   },
   "jsr": {
     "@std/assert@1.0.6": {
@@ -65,6 +66,12 @@
         "lodash"
       ]
     },
+    "@plandek-utils/ts-parse-dayjs@5.2.1": {
+      "integrity": "sha512-aSTtZ+y46/zRbt6YraAJ6zdk8EjlajeVf/1ILrSbSbEpwW1NzQneMUTFV8epsK14cKyblPqcVTtOpeTGmF/zqQ==",
+      "dependencies": [
+        "dayjs"
+      ]
+    },
     "dayjs@1.11.13": {
       "integrity": "sha512-oaMBel6gjolK862uaPQOVTA7q3TZhuSvuMQAAglQDOWYO9A91IrAOUJEyKVlqJlHE0vq5p5UXxzdPfMH/x6xNg=="
     },
@@ -81,7 +88,7 @@
     ],
     "packageJson": {
       "dependencies": [
-        "npm:@plandek-utils/ts-parse-dayjs@^5.1.0"
+        "npm:@plandek-utils/ts-parse-dayjs@^5.2.1"
       ]
     }
   }

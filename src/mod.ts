@@ -98,9 +98,8 @@ export type PlainObjectExtended<T> = {
 
 /**
  * Returns true if the given value is a valid primitive: null, undefined, boolean, string, Dayjs, or number.
- * @internal
  */
-function isValidPrimitive(x: unknown): x is PlainObjectValuePrimitive {
+export function isValidPrimitive(x: unknown): x is PlainObjectValuePrimitive {
   return (
     isNullOrUndefined(x) ||
     typeof x === "boolean" ||
@@ -112,17 +111,15 @@ function isValidPrimitive(x: unknown): x is PlainObjectValuePrimitive {
 
 /**
  * Returns true if the given value is a valid array: array where all elements are PlainObjectValues.
- * @internal
  */
-function isValidArray(x: unknown): x is PlainObjectValue[] {
+export function isValidArray(x: unknown): x is PlainObjectValue[] {
   return Array.isArray(x) && x.every(isPlainObjectValue);
 }
 
 /**
  * Returns true if the given value is a valid object: POJO where all values are PlainObjectValues.
- * @internal
  */
-function isValidObject(x: unknown): x is { [prop: string]: PlainObjectValue } {
+export function isValidObject(x: unknown): x is { [prop: string]: PlainObjectValue } {
   return isObject(x) && Object.values(x).every(isPlainObjectValue);
 }
 
@@ -132,7 +129,7 @@ function isValidObject(x: unknown): x is { [prop: string]: PlainObjectValue } {
  * @param value
  * @returns
  */
-function isNullOrUndefined(value: unknown): value is null | undefined {
+export function isNullOrUndefined(value: unknown): value is null | undefined {
   return value === undefined || value === null;
 }
 
