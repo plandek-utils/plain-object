@@ -1,6 +1,6 @@
 {
   "name": "@plandek-utils/plain-object",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "exports": "./src/mod.ts",
   "tasks": {
     "release": "npx light-release && deno fmt",
@@ -21,10 +21,16 @@
   "nodeModulesDir": "auto",
   "fmt": {
     "lineWidth": 120,
-    "include": ["src/", ".release-notes/"]
+    "include": [
+      "src/",
+      ".release-notes/"
+    ]
   },
   "lint": {
-    "include": ["src/", ".release-notes/"]
+    "include": [
+      "src/",
+      ".release-notes/"
+    ]
   },
   "publish": {
     "include": [
