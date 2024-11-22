@@ -24,8 +24,8 @@ jobs:
           git config --global user.email "github-actions@github.com"
           git config --global user.name "GitHub Actions"
 
-          - name: Install dependencies
-          run: npm install
+      - name: Install dependencies
+        run: npm install
 
       - name: Run checks
         run: npm run check
