@@ -10,13 +10,26 @@ jobs:
       contents: read
       packages: write # allow GITHUB_TOKEN to publish packages
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 22
-      - run: npm install
-      - run: npm run check
-      - run: npm run build
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org/"
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "GitHub Actions"
+
+          - name: Install dependencies
+          run: npm install
+
+      - name: Run checks
+        run: npm run check
+
       - uses: paambaati/codeclimate-action@v9.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
@@ -24,9 +37,30 @@ jobs:
           coverageCommand: npm run test
           coverageLocations: |
             ${{github.workspace}}/coverage/lcov.info:lcov
-      - uses: JS-DevTools/npm-publish@v3
+
+      - name: Run release-please
+        id: release_please
+        uses: googleapis/release-please-action@v4
+        with:
+          release-type: node
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build package
+        run: npm run build
+
+      - uses: paambaati/codeclimate-action@v9.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: npm run test
+          coverageLocations: |
+            ${{github.workspace}}/coverage/lcov.info:lcov
+
+      - name: Publish to npm using JS-DevTools/npm-publish (if not released already)
+        uses: JS-DevTools/npm-publish@v3
         id: publish
         with:
           token: ${{ secrets.NPM_TOKEN }}
+
       - if: ${{ steps.publish.outputs.type }}
         run: echo "Version changed!"

@@ -5,14 +5,28 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 22
-      - run: npm install
-      - run: npm run check
-      - run: npm run test
-      - run: npm run build
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org/"
+
+      - name: Run checks
+        run: npm run check
+
+      - uses: paambaati/codeclimate-action@v9.0.0
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
+        with:
+          coverageCommand: npm run test
+          coverageLocations: |
+            ${{github.workspace}}/coverage/lcov.info:lcov
+
+      - name: Build package
+        run: npm run build
 
   automerge:
     needs: test
