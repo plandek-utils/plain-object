@@ -1,8 +1,7 @@
 # @plandek-utils/plain-object
 
-[![JSR Scope](https://jsr.io/badges/@plandek-utils)](https://jsr.io/@plandek-utils)
-[![JSR](https://jsr.io/badges/@plandek-utils/plain-object)](https://jsr.io/@plandek-utils/plain-object)
-[![JSR Score](https://jsr.io/badges/@plandek-utils/plain-object/score)](https://jsr.io/@plandek-utils/plain-object)
+[![npm version](https://badge.fury.io/js/%40plandek-utils%2Fplain-object.svg)](https://badge.fury.io/js/%40plandek-utils%2Fplain-object)
+![CI](https://github.com/github/plandek-utils/plain-object/workflows/ci-master.yml/badge.svg)
 [![Maintainability](https://api.codeclimate.com/v1/badges/8cbd695e92a5bd147519/maintainability)](https://codeclimate.com/github/plandek-utils/plain-object/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/8cbd695e92a5bd147519/test_coverage)](https://codeclimate.com/github/plandek-utils/plain-object/test_coverage)
 
@@ -17,7 +16,7 @@ A PlainObjectValue is one of:
 - String
 - Boolean
 - Dayjs
-- Array of PlainObjectValue
+- Array of PlainObjectValue (or readonly array of PlainObjectValue)
 - PlainObject
 
 ## Usage

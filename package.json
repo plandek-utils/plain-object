@@ -1,5 +1,66 @@
 {
+  "name": "@plandek-utils/plain-object",
+  "version": "0.3.1",
+  "author": "Eduardo Turiño <eturino@plandek.com>",
+  "description": "TypeScript types and predicate `isPlainObject` and `isPlainObjectValue`, which are serializable POJOs.",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "commit": "git-cz",
+    "build": "npm run build:tsup && npm run build:dts",
+    "build:tsup": "tsup",
+    "build:dts": "echo 'emitting Declaration using tsc' && tsc --emitDeclarationOnly",
+    "fix": "npm run fix:biome && npm run fix:minify",
+    "fix:biome": "biome check --write src",
+    "fix:minify": "echo 'Minifying fixtures.'; find . -regex './src/.*\\.fixtures\\.json$' -exec ./minify-json-file.sh {} \\;",
+    "check": "npm run check:biome && npm run check:tsc",
+    "check:biome": "biome check src",
+    "check:tsc": "tsc --noEmit",
+    "test": "vitest run --coverage",
+    "test:watch": "vitest",
+    "reset": "git clean -dfx -e .idea && git reset --hard && npm install",
+    "version": "standard-version",
+    "prepare-release": "npm run reset && npm run generate && npm run fix && npm run check && npm run test && npm run version && npm run build",
+    "prepare": "husky || true"
+  },
+  "repository": {
+    "type": "github",
+    "url": "git+https://github.com/plandek-utils/plain-object.git"
+  },
+  "bugs": {
+    "url": "https://github.com/plandek-utils/plain-object/issues"
+  },
+  "homepage": "https://github.com/plandek-utils/plain-object",
+  "license": "MIT",
+  "keywords": [],
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@commitlint/cli": "^19.6.0",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@commitlint/cz-commitlint": "^19.5.0",
+    "@types/node": "^22.9.0",
+    "@vitest/coverage-v8": "^2.1.4",
+    "commitizen": "^4.3.1",
+    "husky": "^9.1.6",
+    "inquirer": "^9.3.7",
+    "standard-version": "^9.5.0",
+    "timekeeper": "^2.3.1",
+    "ts-enum-util": "^4.1.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.4"
+  },
   "dependencies": {
-    "@plandek-utils/ts-parse-dayjs": "^5.2.1"
+    "@plandek-utils/ts-parse-dayjs": "5.2.1",
+    "zod": "3.23.8"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@commitlint/cz-commitlint"
+    }
   }
 }

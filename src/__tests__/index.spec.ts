@@ -1,8 +1,7 @@
-import { describe, it } from "@std/testing/bdd";
-import { expect } from "@std/expect";
 import { parseDayjsOrError } from "@plandek-utils/ts-parse-dayjs";
+import { describe, expect, it } from "vitest";
 
-import { isPlainObject, isPlainObjectValue } from "../mod.ts";
+import { isPlainObject, isPlainObjectValue } from "../index.ts";
 
 describe("isPlainObjectValue", () => {
   it("should return true for nil values", () => {
@@ -34,9 +33,9 @@ describe("isPlainObjectValue", () => {
   });
 
   it("should return false for Infinity, -Infinity and NaN", () => {
-    expect(isPlainObjectValue(Infinity)).toBe(false);
-    expect(isPlainObjectValue(-Infinity)).toBe(false);
-    expect(isPlainObjectValue(NaN)).toBe(false);
+    expect(isPlainObjectValue(Number.POSITIVE_INFINITY)).toBe(false);
+    expect(isPlainObjectValue(Number.NEGATIVE_INFINITY)).toBe(false);
+    expect(isPlainObjectValue(Number.NaN)).toBe(false);
   });
 
   it("should return false for symbol", () => {
