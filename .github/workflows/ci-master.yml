@@ -7,7 +7,8 @@ jobs:
   test_and_publish:
     runs-on: ubuntu-latest
     permissions:
-      contents: read
+      contents: write
+      pull-requests: write
       packages: write # allow GITHUB_TOKEN to publish packages
     steps:
       - name: Checkout
