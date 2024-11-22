@@ -1,7 +1,7 @@
 import type { Dayjs } from "dayjs";
 import dayjs from "dayjs";
 
-import { isDayjs, parseDayjs } from "@plandek-utils/ts-parse-dayjs";
+import { parseDayjs } from "@plandek-utils/ts-parse-dayjs";
 import { z } from "zod";
 
 // see https://github.com/colinhacks/zod/discussions/1259#discussioncomment-3954250
@@ -51,7 +51,7 @@ export const plainObjectValuePrimitiveSchema = z.union([
   z.undefined(),
   z.null(),
   z.boolean(),
-  z.number(),
+  z.number().finite(),
   z.string(),
   z.instanceof(Date),
   dayjsSchema,
@@ -107,9 +107,7 @@ export const plainObjectValueSchema: z.ZodType<PlainObjectValue> = z.lazy(() =>
  * No other types are allowed, including functions.
  */
 export function isPlainObjectValue(x: unknown): x is PlainObjectValue {
-  if (typeof x === "function") return false;
-
-  return isValidPrimitive(x) || isValidArray(x) || isValidObject(x);
+  return plainObjectValueSchema.safeParse(x).success;
 }
 
 export const plainObjectSchema = z.record(plainObjectValueSchema);
@@ -131,7 +129,7 @@ export type PlainObjectOrArray = PlainObject | PlainObject[];
  * @returns
  */
 export function isPlainObject(o: PlainObjectValue): o is Record<string, unknown> & PlainObject {
-  return !Array.isArray(o) && !isValidPrimitive(o) && isObject(o);
+  return plainObjectSchema.safeParse(o).success;
 }
 
 /**
@@ -155,13 +153,7 @@ export type PlainObjectExtended<T> = {
  * Returns true if the given value is a valid primitive: null, undefined, boolean, string, Dayjs, or number.
  */
 export function isValidPrimitive(x: unknown): x is PlainObjectValuePrimitive {
-  return (
-    isNullOrUndefined(x) ||
-    typeof x === "boolean" ||
-    typeof x === "string" ||
-    isDayjs(x) ||
-    (typeof x === "number" && Number.isFinite(x))
-  );
+  return plainObjectValuePrimitiveSchema.safeParse(x).success;
 }
 
 /**
@@ -169,30 +161,4 @@ export function isValidPrimitive(x: unknown): x is PlainObjectValuePrimitive {
  */
 export function isValidArray(x: unknown): x is PlainObjectValue[] {
   return Array.isArray(x) && x.every(isPlainObjectValue);
-}
-
-/**
- * Returns true if the given value is a valid object: POJO where all values are PlainObjectValues.
- */
-export function isValidObject(x: unknown): x is { [prop: string]: PlainObjectValue } {
-  return isObject(x) && Object.values(x).every(isPlainObjectValue);
-}
-
-/**
- * see https://docs.deno.com/api/node/util/~/isNullOrUndefined
- *
- * @param value
- * @returns
- */
-export function isNullOrUndefined(value: unknown): value is null | undefined {
-  return value === undefined || value === null;
-}
-
-/**
- * see https://docs.deno.com/api/node/util/~/isObject
- * @param value
- * @returns
- */
-function isObject(value: unknown): value is Record<string, unknown> {
-  return value !== null && typeof value === "object";
 }
