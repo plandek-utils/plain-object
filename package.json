@@ -23,8 +23,7 @@
     "test": "vitest run --coverage",
     "test:watch": "vitest",
     "reset": "git clean -dfx -e .idea && git reset --hard && npm install",
-    "version": "standard-version",
-    "prepare-release": "npm run reset && npm run generate && npm run fix && npm run check && npm run test && npm run version && npm run build",
+    "prepare-release": "npm run reset && npm run fix && npm run check && npm run test && npm run build",
     "prepare": "husky || true"
   },
   "repository": {
@@ -47,9 +46,6 @@
     "commitizen": "^4.3.1",
     "husky": "^9.1.6",
     "inquirer": "^9.3.7",
-    "standard-version": "^9.5.0",
-    "timekeeper": "^2.3.1",
-    "ts-enum-util": "^4.1.0",
     "tsup": "^8.3.5",
     "typescript": "^5.6.3",
     "vitest": "^2.1.4"
