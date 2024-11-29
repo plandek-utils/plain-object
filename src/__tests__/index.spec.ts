@@ -1,12 +1,7 @@
 import { parseDayjsOrError } from "@plandek-utils/ts-parse-dayjs";
 import { describe, expect, it } from "vitest";
 
-import {
-  isPlainObject,
-  isPlainObjectValue,
-  isValidArray,
-  isValidPrimitive,
-} from "../index.ts";
+import { isPlainObject, isPlainObjectValue, isValidArray, isValidPrimitive } from "../index.ts";
 
 describe("isPlainObjectValue", () => {
   it("should return true for nil values", () => {
@@ -62,8 +57,7 @@ describe("isPlainObjectValue", () => {
     const nestedObj = { a: 42, b: "hello", c: { d: true } };
     expect(Object.values(nestedObj).every(isPlainObjectValue)).toBe(true);
     expect(isPlainObjectValue(nestedObj)).toBe(true);
-    expect(isPlainObjectValue({ a: 42, b: "hello", c: { d: () => "oh no" } }))
-      .toBe(false);
+    expect(isPlainObjectValue({ a: 42, b: "hello", c: { d: () => "oh no" } })).toBe(false);
   });
 });
 
