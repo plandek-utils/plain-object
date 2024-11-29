@@ -1,7 +1,12 @@
 import { parseDayjsOrError } from "@plandek-utils/ts-parse-dayjs";
 import { describe, expect, it } from "vitest";
 
-import { isPlainObject, isPlainObjectValue } from "../index.ts";
+import {
+  isPlainObject,
+  isPlainObjectValue,
+  isValidArray,
+  isValidPrimitive,
+} from "../index.ts";
 
 describe("isPlainObjectValue", () => {
   it("should return true for nil values", () => {
@@ -57,7 +62,8 @@ describe("isPlainObjectValue", () => {
     const nestedObj = { a: 42, b: "hello", c: { d: true } };
     expect(Object.values(nestedObj).every(isPlainObjectValue)).toBe(true);
     expect(isPlainObjectValue(nestedObj)).toBe(true);
-    expect(isPlainObjectValue({ a: 42, b: "hello", c: { d: () => "oh no" } })).toBe(false);
+    expect(isPlainObjectValue({ a: 42, b: "hello", c: { d: () => "oh no" } }))
+      .toBe(false);
   });
 });
 
@@ -79,5 +85,37 @@ describe("isPlainObject", () => {
   it("should return false for null and undefined", () => {
     expect(isPlainObject(null)).toBe(false);
     expect(isPlainObject(undefined)).toBe(false);
+  });
+});
+
+describe("isValidPrimitive", () => {
+  it("should return true for valid primitives", () => {
+    expect(isValidPrimitive(null)).toBe(true);
+    expect(isValidPrimitive(undefined)).toBe(true);
+    expect(isValidPrimitive(true)).toBe(true);
+    expect(isValidPrimitive(false)).toBe(true);
+    expect(isValidPrimitive(42)).toBe(true);
+    expect(isValidPrimitive("hello")).toBe(true);
+    expect(isValidPrimitive(parseDayjsOrError("2023-01-01"))).toBe(true);
+  });
+
+  it("should return false for invalid primitives", () => {
+    expect(isValidPrimitive(() => "whatever")).toBe(false);
+    expect(isValidPrimitive(Number.POSITIVE_INFINITY)).toBe(false);
+    expect(isValidPrimitive(Number.NEGATIVE_INFINITY)).toBe(false);
+    expect(isValidPrimitive(Number.NaN)).toBe(false);
+    expect(isValidPrimitive(Symbol("foo"))).toBe(false);
+  });
+});
+
+describe("isValidArray", () => {
+  it("should return true for an array of PlainObjectValues", () => {
+    const arrayWithPrimitives = [42, "hello", true];
+    expect(isValidArray(arrayWithPrimitives)).toBe(true);
+  });
+
+  it("should return false for an array with non-PlainObjectValues", () => {
+    const arrayWithPrimitives = [42, "hello", true, () => "whatever"];
+    expect(isValidArray(arrayWithPrimitives)).toBe(false);
   });
 });

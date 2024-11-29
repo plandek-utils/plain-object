@@ -51,7 +51,7 @@
     "vitest": "^2.1.4"
   },
   "dependencies": {
-    "@plandek-utils/ts-parse-dayjs": "5.2.1",
+    "@plandek-utils/ts-parse-dayjs": "6.0.0",
     "zod": "3.23.8"
   },
   "config": {
