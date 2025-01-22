@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/plandek-utils/plain-object/compare/v1.1.0...v2.0.0) (2025-01-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* dependencies moved to be peerDependencies (zod and @plandek-utils/ts-parse-dayjs)
+
+### Features
+
+* dependencies updated and moved to peerDependencies ([b6b96f1](https://github.com/plandek-utils/plain-object/commit/b6b96f19f91c06842ba403c34834a3c56b2a37f0))
+
 ## [1.1.0](https://github.com/plandek-utils/plain-object/compare/v1.0.0...v1.1.0) (2024-11-29)
 
 
