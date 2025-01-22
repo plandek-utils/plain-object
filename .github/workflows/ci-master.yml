@@ -31,14 +31,6 @@ jobs:
       - name: Run checks
         run: npm run check
 
-      - uses: paambaati/codeclimate-action@v9.0.0
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        with:
-          coverageCommand: npm run test
-          coverageLocations: |
-            ${{github.workspace}}/coverage/lcov.info:lcov
-
       - name: Run release-please
         id: release_please
         uses: googleapis/release-please-action@v4
@@ -48,14 +40,6 @@ jobs:
 
       - name: Build package
         run: npm run build
-
-      - uses: paambaati/codeclimate-action@v9.0.0
-        env:
-          CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
-        with:
-          coverageCommand: npm run test
-          coverageLocations: |
-            ${{github.workspace}}/coverage/lcov.info:lcov
 
       - name: Publish to npm using JS-DevTools/npm-publish (if not released already)
         uses: JS-DevTools/npm-publish@v3
