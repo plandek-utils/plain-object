@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/plandek-utils/plain-object/compare/v2.0.0...v2.0.1) (2025-01-31)
+
+
+### Bug Fixes
+
+* open @plandek-utils/ts-parse-dayjs with 6.4.0 min ([00ba2e1](https://github.com/plandek-utils/plain-object/commit/00ba2e1eb7531f2637596a98506f3c01dc90e1e6))
+
 ## [2.0.0](https://github.com/plandek-utils/plain-object/compare/v1.1.0...v2.0.0) (2025-01-22)
 
 
