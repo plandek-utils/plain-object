@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/plandek-utils/plain-object/compare/v2.0.1...v2.1.0) (2025-01-31)
+
+
+### Features
+
+* adding dist and src to the package ([df8aea7](https://github.com/plandek-utils/plain-object/commit/df8aea78aa07befcb3773dedc7c5e358ebee02b5))
+
 ## [2.0.1](https://github.com/plandek-utils/plain-object/compare/v2.0.0...v2.0.1) (2025-01-31)
 
 
