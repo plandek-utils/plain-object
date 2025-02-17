@@ -5,7 +5,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/8cbd695e92a5bd147519/maintainability)](https://codeclimate.com/github/plandek-utils/plain-object/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/8cbd695e92a5bd147519/test_coverage)](https://codeclimate.com/github/plandek-utils/plain-object/test_coverage)
 
-TypeScript types and predicate utils `isPlainObject` and `isPlainObjectValue`.
+TypeScript types and predicate utils `isPlainObject` and `isPlainObjectValue`. Also includes fast checks `isPlainObjectValueAnObject` and `isPlainObjectValueAnArrayOfObjects.
 
 A PlainObject is a POJO where all values are PlainObjectValue.
 
@@ -56,6 +56,16 @@ isPlainObject(() => "oh no"); // => false
 isPlainObject({ a: 1, b: "stuff", c: [1], d: {}, e: { e1: true } }); // => true
 isPlainObject({ a: 1, b: "stuff", c: [1], d: {}, e: { e1: () => "oh no" } }); // => false
 ```
+
+`isPlainObject` will check exhaustively all values of the given object using `zod`. This can be slow for large quantities of data. If we already know that the given data is a PlainObjectValue, we can use `isPlainObjectValueAnObject` or `isPlainObjectValueAnArrayOfObjects` to check if the value is an object or an array of objects respectively.
+
+```ts
+import { isPlainObjectValueAnObject, isPlainObjectValueAnArrayOfObjects } from "@plandek-utils/plain-object";
+
+isPlainObjectValueAnObject({ a: 1, b: "stuff", c: [1], d: {}, e: { e1: true } }); // => true
+isPlainObjectValueAnArrayOfObjects([{ a: 1, b: "stuff", c: [1], d: {}, e: { e1: true } }]); // => true
+```
+
 
 ## Development
 

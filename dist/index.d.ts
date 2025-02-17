@@ -77,3 +77,23 @@ export declare function isValidPrimitive(x: unknown): x is PlainObjectValuePrimi
  * Returns true if the given value is a valid array: array where all elements are PlainObjectValues.
  */
 export declare function isValidArray(x: unknown): x is PlainObjectValue[];
+/**
+ * Fast check to see if the given value that we know is a PlainObjectValue is a PlainObject.
+ *
+ * This makes way less checks than the `isPlainObject` function, but it is much faster to run.
+ *
+ * Use with caution.
+ *
+ * @param x
+ */
+export declare function isPlainObjectValueAnObject(x: PlainObjectValue): x is PlainObject;
+/**
+ * Fast check to see if the given value that we know is a PlainObjectValue is an array of PlainObjects.
+ *
+ * This makes way less checks than checking with plainObjectSchema, but it is much faster to run.
+ *
+ * Use with caution.
+ *
+ * @param x
+ */
+export declare function isPlainObjectValueAnArrayOfObjects(x: PlainObjectValue): x is PlainObject[];

@@ -1,4 +1,4 @@
-import { dayjsSchema } from "@plandek-utils/ts-parse-dayjs";
+import { dayjsSchema, isDayjs } from "@plandek-utils/ts-parse-dayjs";
 import { z } from "zod";
 
 export const plainObjectValuePrimitiveSchema = z.union([
@@ -115,4 +115,30 @@ export function isValidPrimitive(x: unknown): x is PlainObjectValuePrimitive {
  */
 export function isValidArray(x: unknown): x is PlainObjectValue[] {
   return Array.isArray(x) && x.every(isPlainObjectValue);
+}
+
+/**
+ * Fast check to see if the given value that we know is a PlainObjectValue is a PlainObject.
+ *
+ * This makes way less checks than the `isPlainObject` function, but it is much faster to run.
+ *
+ * Use with caution.
+ *
+ * @param x
+ */
+export function isPlainObjectValueAnObject(x: PlainObjectValue): x is PlainObject {
+  return !!x && typeof x === "object" && !Array.isArray(x) && !isDayjs(x) && !(x instanceof Date);
+}
+
+/**
+ * Fast check to see if the given value that we know is a PlainObjectValue is an array of PlainObjects.
+ *
+ * This makes way less checks than checking with plainObjectSchema, but it is much faster to run.
+ *
+ * Use with caution.
+ *
+ * @param x
+ */
+export function isPlainObjectValueAnArrayOfObjects(x: PlainObjectValue): x is PlainObject[] {
+  return Array.isArray(x) && x.every((item) => isPlainObjectValueAnObject(item));
 }

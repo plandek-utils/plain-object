@@ -22,6 +22,8 @@ var index_exports = {};
 __export(index_exports, {
   isPlainObject: () => isPlainObject,
   isPlainObjectValue: () => isPlainObjectValue,
+  isPlainObjectValueAnArrayOfObjects: () => isPlainObjectValueAnArrayOfObjects,
+  isPlainObjectValueAnObject: () => isPlainObjectValueAnObject,
   isValidArray: () => isValidArray,
   isValidPrimitive: () => isValidPrimitive,
   plainObjectSchema: () => plainObjectSchema,
@@ -61,10 +63,18 @@ function isValidPrimitive(x) {
 function isValidArray(x) {
   return Array.isArray(x) && x.every(isPlainObjectValue);
 }
+function isPlainObjectValueAnObject(x) {
+  return !!x && typeof x === "object" && !Array.isArray(x) && !(0, import_ts_parse_dayjs.isDayjs)(x) && !(x instanceof Date);
+}
+function isPlainObjectValueAnArrayOfObjects(x) {
+  return Array.isArray(x) && x.every((item) => isPlainObjectValueAnObject(item));
+}
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   isPlainObject,
   isPlainObjectValue,
+  isPlainObjectValueAnArrayOfObjects,
+  isPlainObjectValueAnObject,
   isValidArray,
   isValidPrimitive,
   plainObjectSchema,

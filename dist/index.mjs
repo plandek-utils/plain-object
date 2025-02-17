@@ -1,5 +1,5 @@
 // src/index.ts
-import { dayjsSchema } from "@plandek-utils/ts-parse-dayjs";
+import { dayjsSchema, isDayjs } from "@plandek-utils/ts-parse-dayjs";
 import { z } from "zod";
 var plainObjectValuePrimitiveSchema = z.union([
   z.undefined(),
@@ -31,9 +31,17 @@ function isValidPrimitive(x) {
 function isValidArray(x) {
   return Array.isArray(x) && x.every(isPlainObjectValue);
 }
+function isPlainObjectValueAnObject(x) {
+  return !!x && typeof x === "object" && !Array.isArray(x) && !isDayjs(x) && !(x instanceof Date);
+}
+function isPlainObjectValueAnArrayOfObjects(x) {
+  return Array.isArray(x) && x.every((item) => isPlainObjectValueAnObject(item));
+}
 export {
   isPlainObject,
   isPlainObjectValue,
+  isPlainObjectValueAnArrayOfObjects,
+  isPlainObjectValueAnObject,
   isValidArray,
   isValidPrimitive,
   plainObjectSchema,
