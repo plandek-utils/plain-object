@@ -14,8 +14,14 @@ jobs:
           node-version: "22"
           registry-url: "https://registry.npmjs.org/"
 
+      - name: Install dependencies
+        run: npm install
+
       - name: Run checks
         run: npm run check
+
+      - name: Run tests with coverage
+        run: npm test
 
       - name: Build package
         run: npm run build

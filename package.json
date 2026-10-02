@@ -44,13 +44,14 @@
     "@commitlint/config-conventional": "^19.6.0",
     "@commitlint/cz-commitlint": "^19.6.1",
     "@types/node": "^22.12.0",
-    "@vitest/coverage-v8": "^3.0.4",
+    "@vitest/coverage-v8": "5.0.3",
     "commitizen": "^4.3.1",
     "husky": "^9.1.7",
     "inquirer": "^9.3.7",
     "tsup": "^8.3.6",
     "typescript": "^5.7.3",
-    "vitest": "^3.0.4"
+    "vitest": "5.0.3",
+    "vite": "7.3.2"
   },
   "peerDependencies": {
     "@plandek-utils/ts-parse-dayjs": "^6.4.0",
