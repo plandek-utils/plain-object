@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.1](https://github.com/plandek-utils/plain-object/compare/v2.2.0...v2.2.1) (2026-11-11)
+
+
+### Bug Fixes
+
+* PLAN-17573: test release to verify npm trusted publishing ([#11](https://github.com/plandek-utils/plain-object/issues/11)) ([1389803](https://github.com/plandek-utils/plain-object/commit/1389803949edff0c374b996a61316f0d663d134b))
+
 ## [2.2.0](https://github.com/plandek-utils/plain-object/compare/v2.1.0...v2.2.0) (2025-02-17)
 
 
