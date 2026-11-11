@@ -37,7 +37,7 @@ var plainObjectValuePrimitiveSchema = import_zod.z.union([
   import_zod.z.undefined(),
   import_zod.z.null(),
   import_zod.z.boolean(),
-  import_zod.z.number().finite(),
+  import_zod.z.number(),
   import_zod.z.string(),
   import_zod.z.instanceof(Date),
   import_ts_parse_dayjs.dayjsSchema
@@ -47,13 +47,13 @@ var plainObjectValueSchema = import_zod.z.lazy(
     plainObjectValuePrimitiveSchema,
     import_zod.z.array(plainObjectValueSchema),
     import_zod.z.array(plainObjectValueSchema).readonly(),
-    import_zod.z.record(plainObjectValueSchema)
+    import_zod.z.record(import_zod.z.string(), plainObjectValueSchema)
   ])
 );
 function isPlainObjectValue(x) {
   return plainObjectValueSchema.safeParse(x).success;
 }
-var plainObjectSchema = import_zod.z.record(plainObjectValueSchema);
+var plainObjectSchema = import_zod.z.record(import_zod.z.string(), plainObjectValueSchema);
 function isPlainObject(o) {
   return plainObjectSchema.safeParse(o).success;
 }

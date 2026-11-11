@@ -5,7 +5,7 @@ export const plainObjectValuePrimitiveSchema = z.union([
   z.undefined(),
   z.null(),
   z.boolean(),
-  z.number().finite(),
+  z.number(),
   z.string(),
   z.instanceof(Date),
   dayjsSchema,
@@ -44,7 +44,7 @@ export const plainObjectValueSchema: z.ZodType<PlainObjectValue> = z.lazy(() =>
     plainObjectValuePrimitiveSchema,
     z.array(plainObjectValueSchema),
     z.array(plainObjectValueSchema).readonly(),
-    z.record(plainObjectValueSchema),
+    z.record(z.string(), plainObjectValueSchema),
   ]),
 );
 
@@ -64,7 +64,7 @@ export function isPlainObjectValue(x: unknown): x is PlainObjectValue {
   return plainObjectValueSchema.safeParse(x).success;
 }
 
-export const plainObjectSchema = z.record(plainObjectValueSchema);
+export const plainObjectSchema = z.record(z.string(), plainObjectValueSchema);
 /**
  * Object where all values are Plain Object values.
  */

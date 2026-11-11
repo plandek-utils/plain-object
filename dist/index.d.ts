@@ -1,5 +1,5 @@
 import { z } from "zod";
-export declare const plainObjectValuePrimitiveSchema: z.ZodUnion<[z.ZodUndefined, z.ZodNull, z.ZodBoolean, z.ZodNumber, z.ZodString, z.ZodType<Date, z.ZodTypeDef, Date>, z.ZodUnion<[z.ZodType<import("dayjs").Dayjs, z.ZodTypeDef, import("dayjs").Dayjs>, z.ZodEffects<z.ZodUnion<[z.ZodString, z.ZodNumber, z.ZodDate, z.ZodType<import("dayjs").Dayjs, z.ZodTypeDef, import("dayjs").Dayjs>]>, import("dayjs").Dayjs, string | number | Date | import("dayjs").Dayjs>]>]>;
+export declare const plainObjectValuePrimitiveSchema: z.ZodUnion<readonly [z.ZodUndefined, z.ZodNull, z.ZodBoolean, z.ZodNumber, z.ZodString, z.ZodInstanceOf<Date>, z.ZodUnion<readonly [z.ZodInstanceOf<import("dayjs").Dayjs>, z.ZodPipe<z.ZodUnion<readonly [z.ZodString, z.ZodNumber, z.ZodDate, z.ZodInstanceOf<import("dayjs").Dayjs>]>, z.ZodTransform<import("dayjs").Dayjs, string | number | Date | import("dayjs").Dayjs>>]>]>;
 /**
  * Union of all possible primitive values (non-array, non-nested-object) of a Plain Object field.
  *
@@ -39,7 +39,7 @@ export declare const plainObjectValueSchema: z.ZodType<PlainObjectValue>;
  * No other types are allowed, including functions.
  */
 export declare function isPlainObjectValue(x: unknown): x is PlainObjectValue;
-export declare const plainObjectSchema: z.ZodRecord<z.ZodString, z.ZodType<PlainObjectValue, z.ZodTypeDef, PlainObjectValue>>;
+export declare const plainObjectSchema: z.ZodRecord<z.ZodString, z.ZodType<PlainObjectValue, unknown, z.core.$ZodTypeInternals<PlainObjectValue, unknown>>>;
 /**
  * Object where all values are Plain Object values.
  */

@@ -5,7 +5,7 @@ var plainObjectValuePrimitiveSchema = z.union([
   z.undefined(),
   z.null(),
   z.boolean(),
-  z.number().finite(),
+  z.number(),
   z.string(),
   z.instanceof(Date),
   dayjsSchema
@@ -15,13 +15,13 @@ var plainObjectValueSchema = z.lazy(
     plainObjectValuePrimitiveSchema,
     z.array(plainObjectValueSchema),
     z.array(plainObjectValueSchema).readonly(),
-    z.record(plainObjectValueSchema)
+    z.record(z.string(), plainObjectValueSchema)
   ])
 );
 function isPlainObjectValue(x) {
   return plainObjectValueSchema.safeParse(x).success;
 }
-var plainObjectSchema = z.record(plainObjectValueSchema);
+var plainObjectSchema = z.record(z.string(), plainObjectValueSchema);
 function isPlainObject(o) {
   return plainObjectSchema.safeParse(o).success;
 }
