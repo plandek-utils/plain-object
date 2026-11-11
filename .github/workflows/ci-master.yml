@@ -7,6 +7,7 @@ jobs:
   test_and_publish:
     runs-on: ubuntu-latest
     permissions:
+      id-token: write # npm trusted publishing (OIDC)
       contents: write
       pull-requests: write
       packages: write # allow GITHUB_TOKEN to publish packages
@@ -41,11 +42,12 @@ jobs:
       - name: Build package
         run: npm run build
 
+      - name: Use npm >= 11.5.1 (required for npm trusted publishing)
+        run: npm install -g npm@^11.5.1
+
       - name: Publish to npm using JS-DevTools/npm-publish (if not released already)
-        uses: JS-DevTools/npm-publish@v3
+        uses: JS-DevTools/npm-publish@v4
         id: publish
-        with:
-          token: ${{ secrets.NPM_TOKEN }}
 
       - if: ${{ steps.publish.outputs.type }}
         run: echo "Version changed!"
