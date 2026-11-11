@@ -1,6 +1,6 @@
 {
   "name": "@plandek-utils/plain-object",
-  "version": "2.2.1",
+  "version": "3.0.0",
   "author": "Eduardo Turiño <eturino@plandek.com>",
   "description": "TypeScript types and predicate `isPlainObject` and `isPlainObjectValue`, which are serializable POJOs.",
   "main": "dist/index.js",
