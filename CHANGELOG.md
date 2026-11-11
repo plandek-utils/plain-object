@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/plandek-utils/plain-object/compare/v2.2.1...v3.0.0) (2026-11-11)
+
+
+### ⚠ BREAKING CHANGES
+
+* peer zod ^4.6.7 (was ^3.24.1) and @plandek-utils/ts-parse-dayjs ^7.0.0 (was ^6.4.0).
+
+### Features
+
+* PLAN-17573: support zod 4 ([#10](https://github.com/plandek-utils/plain-object/issues/10)) ([a92430a](https://github.com/plandek-utils/plain-object/commit/a92430aa70554624a7e3f8368adfbe1a3163bc92))
+
 ## [2.2.1](https://github.com/plandek-utils/plain-object/compare/v2.2.0...v2.2.1) (2026-11-11)
 
 
